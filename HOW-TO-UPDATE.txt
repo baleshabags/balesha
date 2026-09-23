@@ -1,0 +1,41 @@
+BALESHA WEBSITE: HOW TO UPDATE IT
+
+1. YOUR DETAILS
+Open index.html in any text editor (Notepad, TextEdit or VS Code).
+Search for "EDIT YOUR DETAILS HERE" and change your WhatsApp number,
+Instagram username and phone number.
+
+2. PHOTOS
+Put photos in the "images" folder using the names listed in
+images/PUT-PHOTOS-HERE.txt. Nothing else to change: the site finds them itself.
+
+3. PRODUCTS, PRICES AND MATERIALS
+In index.html, search for "const PRODUCTS". Each bag is one block, for example:
+
+  { id:"noor-clutch", name:"Noor clutch", type:"Potlis & clutches", shape:"clutch", price:1499,
+    material:"Velvet with zardozi embroidery and detachable chain",
+    slides:[{color:"#1D2F5E",name:"Midnight"},{color:"#6B1830",name:"Wine"},{color:"#1E5A3C",name:"Emerald"}]},
+
+- Change name, price or material as you like. Add mrp:1999 to show a crossed-out price.
+- To add a new bag, copy a whole block, give it a new id (lowercase, dashes instead of spaces),
+  and name its photos with that id: images/new-id-1.jpg, images/new-id-2.jpg ...
+- The slide names (Midnight, Wine...) are used as the colour label under each photo, in order.
+- type must be one of: Handbags, Totes, Potlis & clutches, Slings, Purses & wallets
+  (or a new one, which will appear as a new style tab automatically).
+
+4. YOUR SITE IS ON GITHUB PAGES
+Live link: https://baleshabags.github.io/balesha/
+- Add photos: open the images folder on github.com/baleshabags/balesha,
+  click Add file > Upload files, drag photos in, click Commit changes.
+- Edit prices or details: click index.html, then the pencil icon, edit, Commit changes.
+- The live site updates by itself within a few minutes.
+
+5. OTHER WAYS TO PUT IT ONLINE (free)
+Easiest: Netlify Drop
+  - Go to app.netlify.com/drop and drag this whole "balesha-website" folder onto the page.
+  - You get a live link you can share and put in your Instagram bio.
+  - To update later: add photos or edit index.html, then drag the folder onto your
+    site's "Deploys" page on Netlify again. The site updates in a minute.
+You can also connect your own domain (like balesha.in) from the Netlify settings.
+
+Alternative: GitHub Pages (upload the folder to a GitHub repository and turn on Pages).
