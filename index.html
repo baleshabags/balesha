@@ -111,7 +111,7 @@ section{padding:clamp(4.5rem,9vw,8rem) 0}
 .sec-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:1.5rem;margin-bottom:3.5rem}
 
 /* categories */
-.cats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:1.5rem}
+.cats{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:1.5rem}
 .cat-tile{background:none;border:none;padding:0;color:var(--ink);cursor:pointer;text-align:center}
 .cat-tile .frame{aspect-ratio:3/4;border-radius:999px 999px 4px 4px;background:var(--frame);display:grid;place-items:center;padding:20%;transition:background .3s}
 .cat-tile:hover .frame{background:var(--rose-soft)}
@@ -171,6 +171,8 @@ section{padding:clamp(4.5rem,9vw,8rem) 0}
 .price{font-size:1.05rem;font-weight:400}
 .price s{color:var(--muted);font-size:.9rem;margin-left:.4rem}
 .card.single .arrow,.card.single .dots{display:none}
+.card.photo .track{border-radius:4px}
+.card.photo .slide{aspect-ratio:1/1}
 .empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:3rem 1rem}
 
 /* craft */
@@ -465,18 +467,39 @@ const PRODUCTS = [
   { id:"zoya-tote", name:"Zoya structured tote", type:"Handbags", shape:"handbag", price:2499, mrp:3299,
     material:"Textured faux leather, zip-top closure and gold hardware",
     slides:[{color:"#C4A58F",name:"Taupe"}]},
+  { id:"classic-tote", name:"The Classic Tote", type:"Handbags", shape:"handbag", price:2699,
+    material:"Textured faux leather with lotus charm and detachable strap",
+    slides:[{color:"#8A5530",name:"Tan"}]},
   { id:"gulabi-satchel", name:"Gulabi mini satchel", type:"Handbags", shape:"handbag", price:2199, mrp:2799,
     material:"Textured faux leather with top handle and detachable strap",
     slides:[{color:"#E3B8AE",name:"Blush pink"}]},
+  { id:"satchel", name:"The Satchel", type:"Handbags", shape:"handbag", price:2899,
+    material:"Faux leather with gold push-lock, lotus charm and detachable strap",
+    slides:[{color:"#E6DCCB",name:"Ivory"}]},
   { id:"raat-shoulder-bag", name:"Raat shoulder bag", type:"Shoulder bags", shape:"sling", price:1799,
     material:"Pebbled faux leather, zip closure and gold-ring strap",
     slides:[{color:"#1E1B1A",name:"Black"}]},
+  { id:"shoulder-bag", name:"The Shoulder Bag", type:"Shoulder bags", shape:"sling", price:1899,
+    material:"Textured faux leather with gold-ring strap",
+    slides:[{color:"#5E6B4E",name:"Olive"}]},
   { id:"mehendi-sling", name:"Mehendi sling", type:"Slings", shape:"sling", price:1599,
     material:"Faux leather flap with gold push-lock and adjustable strap",
     slides:[{color:"#6B7358",name:"Olive"}]},
+  { id:"crossbody", name:"The Crossbody", type:"Slings", shape:"clutch", price:1999,
+    material:"Faux leather with gold floral embroidery on the flap",
+    slides:[{color:"#C9A09A",name:"Dusty rose"}]},
+  { id:"bucket-bag", name:"The Bucket Bag", type:"Bucket bags", shape:"potli", price:2299,
+    material:"Pebbled faux leather with drawstring and tassels",
+    slides:[{color:"#5A1E1E",name:"Wine"}]},
   { id:"safar-backpack", name:"Safar backpack", type:"Backpacks", shape:"tote", price:2299,
     material:"Faux leather with buckle flap and adjustable straps",
-    slides:[{color:"#6E4128",name:"Chestnut brown"}]}
+    slides:[{color:"#6E4128",name:"Chestnut brown"}]},
+  { id:"backpack", name:"The Backpack", type:"Backpacks", shape:"tote", price:2399,
+    material:"Faux leather with gold push-lock flap and adjustable straps",
+    slides:[{color:"#1C1A1A",name:"Black"}]},
+  { id:"wristlet", name:"The Wristlet", type:"Wristlets", shape:"wallet", price:999,
+    material:"Faux leather with zip top and wrist strap",
+    slides:[{color:"#8A5530",name:"Tan"}]}
 ];
 
 const PRICE_RANGES = [
@@ -591,7 +614,7 @@ function renderGrid(){
   const list=PRODUCTS.filter(p=>(activeType==="All"||p.type===activeType)&&PRICE_RANGES[activePrice].test(p.price));
   if(!list.length){grid.innerHTML=`<p class="empty">No bags in this style and price range yet. Try another price, or message us on WhatsApp for something specific.</p>`;return;}
   grid.innerHTML=list.map(p=>`
-    <article class="card${p.slides.length<2?" single":""}">
+    <article class="card${p.slides.length<2?" single":""}${p.slides[0].img?" photo":""}">
       <div class="slider">
         <div class="track" tabindex="0" aria-label="${p.name} colours">
           ${p.slides.map(s=>`<div class="slide">${s.img?`<img src="${s.img}" alt="${p.name}, ${s.name}" loading="lazy">`:bagSVG(p.shape,s.color)}</div>`).join("")}
