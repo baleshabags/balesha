@@ -215,6 +215,14 @@ section{padding:clamp(4.5rem,9vw,8rem) 0}
 :root[data-theme="dark"] .link-row .ic{color:var(--rose)}
 @media (max-width:860px){.contact .wrap{grid-template-columns:1fr}}
 
+.hero-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:inherit;opacity:0;transition:opacity 1.2s ease}
+.hero-slide.on{opacity:1}
+.hero-dots{position:absolute;bottom:3.6rem;left:0;right:0;display:flex;justify-content:center;gap:.5rem;z-index:2}
+.hero-dots button{width:18px;height:2px;padding:0;border:none;background:rgba(246,228,216,.55);cursor:pointer;position:relative}
+.hero-dots button::after{content:"";position:absolute;inset:-12px -3px}
+.hero-dots button[aria-current="true"]{background:#F6E4D8;width:32px}
+.hero-arch .note{z-index:2;color:#F6E4D8;text-shadow:0 1px 10px rgba(0,0,0,.6)}
+@media (max-width:860px){.hero-dots{bottom:3.2rem}}
 /* founder card */
 .founder{margin-top:2.75rem;display:flex;gap:1.25rem;align-items:center;padding:1.25rem;background:var(--surface);border:1px solid var(--line);max-width:440px}
 .founder .portrait{width:84px;height:84px;flex:none;border-radius:4px;background:var(--maroon);color:var(--cream);display:grid;place-items:center;position:relative;overflow:hidden;font-family:"Bodoni Moda",Georgia,serif;font-size:1.45rem;letter-spacing:.06em}
@@ -279,7 +287,7 @@ footer .bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1re
         </div>
       </div>
       <div class="hero-art">
-        <div class="hero-arch" id="heroBag"><span class="note">The Mirror Tote, in sand</span></div>
+        <div class="hero-arch" id="heroBag"><span class="note">The Mirror Tote collection</span></div>
       </div>
     </div>
   </section>
@@ -674,6 +682,27 @@ async function findOne(name){for(const t of PHOTOS.types){const hit=await tryIma
 async function findSeries(base){const out=[];for(let i=1;i<=PHOTOS.maxPerProduct;i++){const hit=await findOne(`${base}-${i}`);if(!hit)break;out.push(hit);}return out;}
 const photoTag=(src,alt)=>`<img src="${src}" alt="${alt}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:inherit">`;
 
+
+function startHeroSlides(list){
+  const el=document.getElementById("heroBag");
+  el.querySelector("svg")?.remove();
+  el.style.overflow="hidden";
+  el.insertAdjacentHTML("afterbegin",list.map((src,i)=>`<img class="hero-slide${i===0?" on":""}" src="${src}" alt="Balesha handbag">`).join(""));
+  const slides=[...el.querySelectorAll(".hero-slide")];
+  if(slides.length<2)return;
+  const dots=document.createElement("div");dots.className="hero-dots";
+  dots.innerHTML=slides.map((_,i)=>`<button aria-label="Show banner photo ${i+1}" ${i===0?'aria-current="true"':""}></button>`).join("");
+  el.appendChild(dots);
+  const btns=[...dots.children];
+  let cur=0,timer=null;
+  const show=i=>{slides[cur].classList.remove("on");btns[cur].removeAttribute("aria-current");cur=(i+slides.length)%slides.length;slides[cur].classList.add("on");btns[cur].setAttribute("aria-current","true");};
+  const reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const play=()=>{if(!reduce){clearInterval(timer);timer=setInterval(()=>show(cur+1),4500);}};
+  btns.forEach((b,i)=>b.onclick=()=>{show(i);play();});
+  el.addEventListener("mouseenter",()=>clearInterval(timer));
+  el.addEventListener("mouseleave",play);
+  play();
+}
 async function loadPhotos(){
   // product sliders
   const results=await Promise.all(PRODUCTS.map(p=>findSeries(p.id)));
@@ -695,8 +724,12 @@ async function loadPhotos(){
   // hero, featured and instagram photos
   const founderPic=await findOne("founder");
   if(founderPic){document.getElementById("founderPhoto").innerHTML=photoTag(founderPic,CONTACT.founderName);}
-  const hero=await findOne("hero")||PRODUCTS[0].slides[0].img;
-  if(hero){const el=document.getElementById("heroBag");el.querySelector("svg")?.remove();el.style.overflow="hidden";el.insertAdjacentHTML("afterbegin",photoTag(hero,"Balesha handbag"));}
+  // banner slideshow: hero.jpg, then hero-2.jpg, hero-3.jpg ... (up to hero-8)
+  const heroes=[];
+  const h1=await findOne("hero"); if(h1)heroes.push(h1);
+  for(let i=2;i<=8;i++){const hit=await findOne(`hero-${i}`);if(!hit)break;heroes.push(hit);}
+  if(!heroes.length&&PRODUCTS[0].slides[0].img)heroes.push(PRODUCTS[0].slides[0].img);
+  if(heroes.length)startHeroSlides(heroes);
   const feat=await findOne("featured")||featured.slides[0].img;
   if(feat){const el=document.getElementById("featArt");el.style.overflow="hidden";el.innerHTML=photoTag(feat,featured.name);}
   const tiles=[...document.querySelectorAll("#instaGrid a")];
