@@ -170,6 +170,7 @@ section{padding:clamp(4.5rem,9vw,8rem) 0}
 .card-bottom{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding-top:.9rem;border-top:1px solid var(--line)}
 .price{font-size:1.05rem;font-weight:400}
 .price s{color:var(--muted);font-size:.9rem;margin-left:.4rem}
+.card.single .arrow,.card.single .dots{display:none}
 .empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:3rem 1rem}
 
 /* craft */
@@ -249,7 +250,7 @@ footer .bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1re
 </head>
 <body>
 
-<div class="banner">Festive edit now in: potlis and clutches from ₹999. <a href="#collection">Shop the edit</a></div>
+<div class="banner">Our new collection is here. <a href="#collection">Shop the bags</a></div>
 
 <header class="site">
   <div class="wrap">
@@ -269,21 +270,21 @@ footer .bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1re
       <div class="hero-copy">
         <h1><span class="js-mono" data-label="Balesha"></span><span class="wordmark" aria-hidden="true">BALESHA<span class="brand-dot">.</span></span></h1>
         <p class="tagline serif">Handbags with an Indian heart.</p>
-        <p class="lede">Elegant bags finished with zari, mirror work and block print, made for every day and every celebration, at prices that feel fair.</p>
+        <p class="lede">Elegant, structured bags for work, weekends and celebrations, finished with gold hardware and priced to feel fair.</p>
         <div class="actions">
           <a href="#collection" class="btn btn-solid">Explore the collection</a>
           <a href="#" class="btn btn-line js-ig" target="_blank" rel="noopener">Follow on Instagram</a>
         </div>
       </div>
       <div class="hero-art">
-        <div class="hero-arch" id="heroBag"><span class="note">The Rani top-handle, in maroon</span></div>
+        <div class="hero-arch" id="heroBag"><span class="note">The Zoya structured tote, in taupe</span></div>
       </div>
     </div>
   </section>
 
   <div class="promise">
     <div class="wrap">
-      <div><strong>From ₹699</strong><span>Purses, potlis and statement bags</span></div>
+      <div><strong>Honest prices</strong><span>Luxury looks without the luxury markup</span></div>
       <div><strong>Indian craft</strong><span>Zari, mirror work and hand block print</span></div>
       <div><strong>Pan-India delivery</strong><span>Order directly on WhatsApp</span></div>
     </div>
@@ -304,15 +305,15 @@ footer .bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1re
     <div class="wrap">
       <div class="feat-art" id="featArt"></div>
       <div class="feat-copy">
-        <p class="kicker">The festive piece</p>
-        <h2 class="serif" id="featTitle">Noor clutch</h2>
-        <p class="desc">Soft velvet worked with zardozi embroidery, finished with a gold clasp and a detachable chain, so it moves from wedding to dinner with ease.</p>
+        <p class="kicker">Our favourite</p>
+        <h2 class="serif" id="featTitle">Gulabi mini satchel</h2>
+        <p class="desc">A soft blush satchel with gold hardware and a structured shape, carried by its top handle for the day or on the detachable strap when your hands are full.</p>
         <dl class="spec">
-          <dt>Material</dt><dd>Velvet with zardozi embroidery</dd>
-          <dt>Carry</dt><dd>In hand, or on the detachable chain</dd>
-          <dt>Colours</dt><dd><div class="swatches"><span style="background:#1D2F5E" title="Midnight"></span><span style="background:#6B1830" title="Wine"></span><span style="background:#1E5A3C" title="Emerald"></span></div></dd>
+          <dt>Material</dt><dd>Textured faux leather with gold hardware</dd>
+          <dt>Carry</dt><dd>By hand, or on the detachable shoulder strap</dd>
+          <dt>Colour</dt><dd><div class="swatches"><span style="background:#E3B8AE" title="Blush pink"></span></div></dd>
         </dl>
-        <p class="feat-price">₹1,499</p>
+        <p class="feat-price">₹2,199<s>₹2,799</s></p>
         <a class="btn btn-solid js-feat-order" href="#" target="_blank" rel="noopener">Order on WhatsApp</a>
       </div>
     </div>
@@ -461,30 +462,21 @@ const PHOTOS = { folder:"images/", maxPerProduct:8, types:["jpg","jpeg","png","w
    Each slide can be either { color:"#hex", name:"Colour" } (drawn illustration)
    or { img:"your-photo.jpg", name:"Front view" } once you have real photos. */
 const PRODUCTS = [
-  { id:"rani-top-handle", name:"Rani top-handle", type:"Handbags", shape:"handbag", price:2499, mrp:3299,
-    material:"Vegan leather with zari trim and gold clasp",
-    slides:[{color:"#7A1F33",name:"Maroon"},{color:"#0E4A4A",name:"Peacock"},{color:"#E9D8C4",name:"Ivory"}]},
-  { id:"gulmohar-tote", name:"Gulmohar tote", type:"Totes", shape:"tote", price:1899,
-    material:"Cotton canvas with hand block print, inner zip pocket",
-    slides:[{color:"#C8452C",name:"Gulmohar red"},{color:"#2F4A7A",name:"Indigo"},{color:"#6E7A3A",name:"Mehendi"}]},
-  { id:"shaadi-potli", name:"Shaadi potli", type:"Potlis & clutches", shape:"potli", price:999, mrp:1299,
-    material:"Raw silk with mirror work and silk tassels",
-    slides:[{color:"#B0265C",name:"Rani pink"},{color:"#D9A21B",name:"Haldi"},{color:"#4B2A6B",name:"Jamun"}]},
-  { id:"noor-clutch", name:"Noor clutch", type:"Potlis & clutches", shape:"clutch", price:1499,
-    material:"Velvet with zardozi embroidery and detachable chain",
-    slides:[{color:"#1D2F5E",name:"Midnight"},{color:"#6B1830",name:"Wine"},{color:"#1E5A3C",name:"Emerald"}]},
-  { id:"chandni-sling", name:"Chandni sling", type:"Slings", shape:"sling", price:1299,
-    material:"Faux leather with gold hardware and adjustable strap",
-    slides:[{color:"#E8D5C8",name:"Chandni white"},{color:"#2A1E1A",name:"Black"},{color:"#9C5B3B",name:"Tan"}]},
-  { id:"mehr-wallet", name:"Mehr wallet", type:"Purses & wallets", shape:"wallet", price:699,
-    material:"Vegan leather, 8 card slots and coin pocket",
-    slides:[{color:"#C77B8A",name:"Blush"},{color:"#0E4A4A",name:"Peacock"},{color:"#7A1F33",name:"Maroon"}]},
-  { id:"riwaaz-satchel", name:"Riwaaz satchel", type:"Handbags", shape:"handbag", price:3499, mrp:4499,
-    material:"Premium PU leather with antique brass details",
-    slides:[{color:"#5A3A26",name:"Chocolate"},{color:"#2A1E1A",name:"Black"},{color:"#A87A4A",name:"Camel"}]},
-  { id:"kantha-shopper", name:"Kantha shopper", type:"Totes", shape:"tote", price:2199,
-    material:"Jute with kantha stitch and leather handles",
-    slides:[{color:"#B89968",name:"Natural jute"},{color:"#8A2E3B",name:"Sindoor"},{color:"#3C5C5A",name:"Sage"}]}
+  { id:"zoya-tote", name:"Zoya structured tote", type:"Handbags", shape:"handbag", price:2499, mrp:3299,
+    material:"Textured faux leather, zip-top closure and gold hardware",
+    slides:[{color:"#C4A58F",name:"Taupe"}]},
+  { id:"gulabi-satchel", name:"Gulabi mini satchel", type:"Handbags", shape:"handbag", price:2199, mrp:2799,
+    material:"Textured faux leather with top handle and detachable strap",
+    slides:[{color:"#E3B8AE",name:"Blush pink"}]},
+  { id:"raat-shoulder-bag", name:"Raat shoulder bag", type:"Shoulder bags", shape:"sling", price:1799,
+    material:"Pebbled faux leather, zip closure and gold-ring strap",
+    slides:[{color:"#1E1B1A",name:"Black"}]},
+  { id:"mehendi-sling", name:"Mehendi sling", type:"Slings", shape:"sling", price:1599,
+    material:"Faux leather flap with gold push-lock and adjustable strap",
+    slides:[{color:"#6B7358",name:"Olive"}]},
+  { id:"safar-backpack", name:"Safar backpack", type:"Backpacks", shape:"tote", price:2299,
+    material:"Faux leather with buckle flap and adjustable straps",
+    slides:[{color:"#6E4128",name:"Chestnut brown"}]}
 ];
 
 const PRICE_RANGES = [
@@ -565,18 +557,18 @@ document.querySelectorAll(".js-founder-initials").forEach(e=>e.textContent=CONTA
 document.getElementById("yr").textContent=new Date().getFullYear();
 document.getElementById("heroBag").insertAdjacentHTML("afterbegin",bagSVG("handbag","#7A1F33"));
 
-const featured=PRODUCTS.find(p=>p.name==="Noor clutch");
+const featured=PRODUCTS.find(p=>p.id==="gulabi-satchel")||PRODUCTS[0];
 document.getElementById("featArt").innerHTML=bagSVG(featured.shape,featured.slides[0].color);
 document.querySelector(".js-feat-order").href=orderLink(featured);
 
 // instagram tiles
-const igPicks=[["potli","#B0265C"],["handbag","#0E4A4A"],["tote","#C8452C"],["clutch","#1D2F5E"]];
+const igPicks=PRODUCTS.slice(0,4).map(p=>[p.shape,p.slides[0].color]);
 document.getElementById("instaGrid").innerHTML=igPicks.map(([s,c])=>`<a href="https://instagram.com/${CONTACT.instagram}" target="_blank" rel="noopener" aria-label="See this bag on Instagram">${bagSVG(s,c)}</a>`).join("");
 
 // categories + filters
 const TYPES=["All",...new Set(PRODUCTS.map(p=>p.type))];
 let activeType="All", activePrice=0;
-const catShape={"Handbags":["handbag","#6B1830"],"Totes":["tote","#B89968"],"Potlis & clutches":["potli","#B0265C"],"Slings":["sling","#9C5B3B"],"Purses & wallets":["wallet","#C77B8A"]};
+const catShape=Object.fromEntries(PRODUCTS.map(p=>[p.type,[p.shape,p.slides[0].color]]).reverse());
 document.getElementById("cats").innerHTML=TYPES.slice(1).map(t=>{
   const n=PRODUCTS.filter(p=>p.type===t).length;
   return `<button class="cat-tile" data-t="${t}"><span class="frame">${bagSVG(...catShape[t])}</span><span class="name">${t}</span><span class="count">${n} ${n===1?"style":"styles"}</span></button>`;
@@ -599,7 +591,7 @@ function renderGrid(){
   const list=PRODUCTS.filter(p=>(activeType==="All"||p.type===activeType)&&PRICE_RANGES[activePrice].test(p.price));
   if(!list.length){grid.innerHTML=`<p class="empty">No bags in this style and price range yet. Try another price, or message us on WhatsApp for something specific.</p>`;return;}
   grid.innerHTML=list.map(p=>`
-    <article class="card">
+    <article class="card${p.slides.length<2?" single":""}">
       <div class="slider">
         <div class="track" tabindex="0" aria-label="${p.name} colours">
           ${p.slides.map(s=>`<div class="slide">${s.img?`<img src="${s.img}" alt="${p.name}, ${s.name}" loading="lazy">`:bagSVG(p.shape,s.color)}</div>`).join("")}
@@ -659,12 +651,12 @@ async function loadPhotos(){
   // hero, featured and instagram photos
   const founderPic=await findOne("founder");
   if(founderPic){document.getElementById("founderPhoto").innerHTML=photoTag(founderPic,CONTACT.founderName);}
-  const hero=await findOne("hero");
+  const hero=await findOne("hero")||PRODUCTS[0].slides[0].img;
   if(hero){const el=document.getElementById("heroBag");el.querySelector("svg")?.remove();el.style.overflow="hidden";el.insertAdjacentHTML("afterbegin",photoTag(hero,"Balesha handbag"));}
   const feat=await findOne("featured")||featured.slides[0].img;
   if(feat){const el=document.getElementById("featArt");el.style.overflow="hidden";el.innerHTML=photoTag(feat,featured.name);}
   const tiles=[...document.querySelectorAll("#instaGrid a")];
-  for(let i=0;i<tiles.length;i++){const hit=await findOne(`insta-${i+1}`);if(hit)tiles[i].innerHTML=photoTag(hit,"Balesha on Instagram");}
+  for(let i=0;i<tiles.length;i++){const hit=await findOne(`insta-${i+1}`)||PRODUCTS[i]?.slides[0].img;if(hit)tiles[i].innerHTML=photoTag(hit,"Balesha on Instagram");}
 }
 renderTabs();renderGrid();
 loadPhotos();
