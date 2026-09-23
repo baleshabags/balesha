@@ -1,0 +1,28 @@
+Put your photos in this folder. The website finds them by their file names.
+
+PRODUCT PHOTOS (the swipe slider on each bag)
+Name them with the product id, then -1, -2, -3 and so on:
+
+  rani-top-handle-1.jpg   rani-top-handle-2.jpg   rani-top-handle-3.jpg
+  gulmohar-tote-1.jpg     ...
+  shaadi-potli-1.jpg      ...
+  noor-clutch-1.jpg       ...
+  chandni-sling-1.jpg     ...
+  mehr-wallet-1.jpg       ...
+  riwaaz-satchel-1.jpg    ...
+  kantha-shopper-1.jpg    ...
+
+Up to 8 photos per bag. Numbers must start at 1 with no gaps
+(if -2 is missing, -3 and later won't be shown).
+
+OTHER PHOTOS (optional)
+  hero.jpg        the big bag photo at the top of the page
+  featured.jpg    the featured-piece photo (otherwise noor-clutch-1 is used)
+  insta-1.jpg to insta-4.jpg   the four Instagram tiles
+
+TIPS
+- .jpg, .jpeg, .png and .webp all work.
+- Use lowercase names exactly as above, with no spaces.
+- Portrait photos (3:4, for example 1200 x 1600 pixels) look best.
+- Keep each photo under about 500 KB so the site loads fast on phones.
+- Any bag without photos keeps its drawing, so you can add photos one bag at a time.
