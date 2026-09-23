@@ -111,7 +111,7 @@ section{padding:clamp(4.5rem,9vw,8rem) 0}
 .sec-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:1.5rem;margin-bottom:3.5rem}
 
 /* categories */
-.cats{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:1.5rem}
+.cats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.5rem}
 .cat-tile{background:none;border:none;padding:0;color:var(--ink);cursor:pointer;text-align:center}
 .cat-tile .frame{aspect-ratio:3/4;border-radius:999px 999px 4px 4px;background:var(--frame);display:grid;place-items:center;padding:20%;transition:background .3s}
 .cat-tile:hover .frame{background:var(--rose-soft)}
@@ -252,7 +252,7 @@ footer .bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1re
 </head>
 <body>
 
-<div class="banner">Our new collection is here. <a href="#collection">Shop the bags</a></div>
+<div class="banner">Festive edit now in: potlis, mirror-work bags and clutches. <a href="#collection">Shop the edit</a></div>
 
 <header class="site">
   <div class="wrap">
@@ -476,12 +476,21 @@ const PRODUCTS = [
   { id:"satchel", name:"The Satchel", type:"Handbags", shape:"handbag", price:2899,
     material:"Faux leather with gold push-lock, lotus charm and detachable strap",
     slides:[{color:"#E6DCCB",name:"Ivory"}]},
+  { id:"mirror-tote", name:"The Mirror Tote", type:"Handbags", shape:"handbag", price:2499,
+    material:"Mirror-work fabric with faux leather handles and tassel charm",
+    slides:[{color:"#D8C3A0",name:"Sand"}]},
   { id:"raat-shoulder-bag", name:"Raat shoulder bag", type:"Shoulder bags", shape:"sling", price:1799,
     material:"Pebbled faux leather, zip closure and gold-ring strap",
     slides:[{color:"#1E1B1A",name:"Black"}]},
   { id:"shoulder-bag", name:"The Shoulder Bag", type:"Shoulder bags", shape:"sling", price:1899,
     material:"Textured faux leather with gold-ring strap",
     slides:[{color:"#5E6B4E",name:"Olive"}]},
+  { id:"moon-bag", name:"The Moon Bag", type:"Shoulder bags", shape:"sling", price:1999,
+    material:"Mirror-work body with tassel charm and gold-ring strap",
+    slides:[{color:"#C9A08A",name:"Blush"}]},
+  { id:"boho-shoulder-bag", name:"The Boho Shoulder Bag", type:"Shoulder bags", shape:"sling", price:2199,
+    material:"Mirror-work fabric with braided handle and shell tassels",
+    slides:[{color:"#D9CBAE",name:"Natural"}]},
   { id:"mehendi-sling", name:"Mehendi sling", type:"Slings", shape:"sling", price:1599,
     material:"Faux leather flap with gold push-lock and adjustable strap",
     slides:[{color:"#6B7358",name:"Olive"}]},
@@ -499,7 +508,19 @@ const PRODUCTS = [
     slides:[{color:"#1C1A1A",name:"Black"}]},
   { id:"wristlet", name:"The Wristlet", type:"Wristlets", shape:"wallet", price:999,
     material:"Faux leather with zip top and wrist strap",
-    slides:[{color:"#8A5530",name:"Tan"}]}
+    slides:[{color:"#8A5530",name:"Tan"}]},
+  { id:"royal-potli", name:"The Royal Potli", type:"Potlis", shape:"potli", price:1299,
+    material:"Embroidered fabric with mirror work, beaded tassels and drawstring",
+    slides:[{color:"#7A1F2B",name:"Maroon"}]},
+  { id:"velvet-potli", name:"The Velvet Potli", type:"Potlis", shape:"potli", price:1199,
+    material:"Velvet with zari-style embroidery and tassel drawstring",
+    slides:[{color:"#6B1A24",name:"Wine"}]},
+  { id:"classic-potli", name:"The Classic Potli", type:"Potlis", shape:"potli", price:999,
+    material:"Embroidered fabric with mirror work and tassel drawstring",
+    slides:[{color:"#5F6440",name:"Olive"}]},
+  { id:"evening-clutch", name:"The Evening Clutch", type:"Clutches", shape:"clutch", price:1499,
+    material:"Velvet with embroidered floral lattice and gold chain",
+    slides:[{color:"#1F3A2C",name:"Bottle green"}]}
 ];
 
 const PRICE_RANGES = [
