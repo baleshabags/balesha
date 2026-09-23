@@ -19,6 +19,7 @@ OTHER PHOTOS (optional)
   hero.jpg        the big bag photo at the top of the page
   featured.jpg    the featured-piece photo (otherwise noor-clutch-1 is used)
   insta-1.jpg to insta-4.jpg   the four Instagram tiles
+  founder.jpg     your photo in the founder card (otherwise your initials show)
 
 TIPS
 - .jpg, .jpeg, .png and .webp all work.
