@@ -238,6 +238,13 @@ section{padding:clamp(4.5rem,9vw,8rem) 0}
 .tribute .by{margin:1.5rem 0 0;color:var(--muted);font-size:.98rem}
 .tribute .second{margin:2.25rem 0 0;color:var(--muted);max-width:54ch;font-size:1.02rem}
 
+.head-actions{justify-self:end;display:flex;align-items:center;gap:1rem}
+.head-actions .head-link{justify-self:auto}
+.head-ig{display:grid;place-items:center;width:34px;height:34px;color:var(--muted);transition:color .2s}
+.head-ig:hover{color:var(--ink)}
+.head-ig svg{width:19px;height:19px;margin-top:-3px}
+.head-sep{width:1px;height:18px;background:var(--line)}
+@media (max-width:600px){.head-actions{gap:.6rem}.head-ig{width:30px;height:30px}.head-ig svg{width:17px;height:17px}}
 /* founder card */
 .founder{margin-top:2.75rem;display:flex;gap:1.25rem;align-items:center;padding:1.25rem;background:var(--surface);border:1px solid var(--line);max-width:440px}
 .founder .portrait{width:84px;height:84px;flex:none;border-radius:4px;background:var(--maroon);color:var(--cream);display:grid;place-items:center;position:relative;overflow:hidden;font-family:"Bodoni Moda",Georgia,serif;font-size:1.45rem;letter-spacing:.06em}
@@ -383,7 +390,11 @@ footer .bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1re
       <a href="#contact">Contact</a>
     </nav>
     <a href="#top" class="logo" aria-label="Balesha home"><span class="js-mono"></span><span class="wordmark">BALESHA<span class="brand-dot">.</span></span></a>
-    <a class="head-link js-wa" href="#" target="_blank" rel="noopener"><span class="js-wa-icon"></span>Chat with us</a>
+    <div class="head-actions">
+      <a class="head-ig js-ig js-brand-ig" href="#" target="_blank" rel="noopener" aria-label="Balesha on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".9" fill="currentColor" stroke="none"/></svg></a>
+      <span class="head-sep js-brand-ig" aria-hidden="true"></span>
+      <a class="head-link js-wa" href="#" target="_blank" rel="noopener"><span class="js-wa-icon"></span>Chat with us</a>
+    </div>
   </div>
 </header>
 
