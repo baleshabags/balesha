@@ -266,6 +266,17 @@ section{padding:clamp(4.5rem,9vw,8rem) 0}
 .head-ig svg{width:19px;height:19px;margin-top:-3px}
 .head-sep{width:1px;height:18px;background:var(--line)}
 @media (max-width:600px){.head-actions{gap:.6rem}.head-ig{width:30px;height:30px}.head-ig svg{width:17px;height:17px}}
+/* campaign banner */
+.campaign{background:var(--maroon-deep);padding:clamp(2.5rem,6vw,4.5rem) 0}
+.camp-frame{position:relative;width:min(100%,680px);aspect-ratio:1/1;margin-inline:auto;overflow:hidden;border-radius:4px;box-shadow:0 20px 50px rgba(0,0,0,.35);touch-action:pan-y}
+.camp-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.1s ease}
+.camp-frame img.on{opacity:1}
+.camp-frame::after{content:"";position:absolute;inset:12px;border:1px solid rgba(201,160,82,.55);pointer-events:none;border-radius:2px}
+.camp-dots{display:flex;justify-content:center;gap:.55rem;margin-top:1.25rem}
+.camp-dots button{width:20px;height:2px;padding:0;border:none;background:rgba(246,228,216,.4);cursor:pointer;position:relative}
+.camp-dots button::after{content:"";position:absolute;inset:-12px -3px}
+.camp-dots button[aria-current="true"]{background:#F6E4D8;width:34px}
+@media (max-width:600px){.campaign{padding:1.75rem 0}.camp-frame::after{inset:8px}}
 /* founder card */
 .founder{margin-top:2.75rem;display:flex;gap:1.25rem;align-items:center;padding:1.25rem;background:var(--surface);border:1px solid var(--line);max-width:440px}
 .founder .portrait{width:84px;height:84px;flex:none;border-radius:4px;background:var(--maroon);color:var(--cream);display:grid;place-items:center;position:relative;overflow:hidden;font-family:"Bodoni Moda",Georgia,serif;font-size:1.45rem;letter-spacing:.06em}
@@ -471,6 +482,13 @@ footer .bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1re
         <p class="feat-price">₹2,199<s>₹2,799</s></p>
         <a class="btn btn-solid js-feat-order" href="#" target="_blank" rel="noopener">Order on WhatsApp</a>
       </div>
+    </div>
+  </section>
+
+  <section class="campaign jaali" id="campaign" aria-label="Balesha campaign" hidden>
+    <div class="wrap">
+      <div class="camp-frame" id="campFrame" tabindex="0" aria-roledescription="carousel"></div>
+      <div class="camp-dots" id="campDots"></div>
     </div>
   </section>
 
@@ -868,6 +886,30 @@ function startHeroSlides(list){
   el.addEventListener("mouseleave",play);
   play();
 }
+
+async function startCampaign(){
+  const list=await findSeries("campaign");
+  if(!list.length)return;
+  const sec=document.getElementById("campaign"), frame=document.getElementById("campFrame"), dotsEl=document.getElementById("campDots");
+  sec.hidden=false;
+  frame.innerHTML=list.map((src,i)=>`<img src="${src}" alt="Balesha campaign photo ${i+1}" class="${i===0?"on":""}" ${i?'loading="lazy"':""}>`).join("");
+  const imgs=[...frame.querySelectorAll("img")];
+  if(imgs.length<2)return;
+  dotsEl.innerHTML=imgs.map((_,i)=>`<button aria-label="Show campaign photo ${i+1}" ${i===0?'aria-current="true"':""}></button>`).join("");
+  const dots=[...dotsEl.children];
+  let cur=0,timer=null;
+  const show=i=>{imgs[cur].classList.remove("on");dots[cur].removeAttribute("aria-current");cur=(i+imgs.length)%imgs.length;imgs[cur].classList.add("on");dots[cur].setAttribute("aria-current","true");};
+  const reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const play=()=>{clearInterval(timer);if(!reduce)timer=setInterval(()=>show(cur+1),5000);};
+  dots.forEach((d,i)=>d.onclick=()=>{show(i);play();});
+  frame.addEventListener("mouseenter",()=>clearInterval(timer));
+  frame.addEventListener("mouseleave",play);
+  frame.addEventListener("keydown",e=>{if(e.key==="ArrowRight"){show(cur+1);play();}if(e.key==="ArrowLeft"){show(cur-1);play();}});
+  let x0=null;
+  frame.addEventListener("touchstart",e=>{x0=e.touches[0].clientX;},{passive:true});
+  frame.addEventListener("touchend",e=>{if(x0===null)return;const dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40){show(cur+(dx<0?1:-1));play();}x0=null;});
+  play();
+}
 async function loadPhotos(){
   // product sliders
   const results=await Promise.all(PRODUCTS.map(p=>findSeries(p.id)));
@@ -904,6 +946,7 @@ async function loadPhotos(){
 }
 renderTabs();renderGrid();
 loadPhotos();
+startCampaign();
 </script>
 </body>
 </html>
