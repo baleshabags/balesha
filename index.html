@@ -277,6 +277,11 @@ section{padding:clamp(4.5rem,9vw,8rem) 0}
 .camp-dots button::after{content:"";position:absolute;inset:-12px -3px}
 .camp-dots button[aria-current="true"]{background:#F6E4D8;width:34px}
 @media (max-width:600px){.campaign{padding:1.75rem 0}.camp-frame::after{inset:8px}}
+.tribute .origin{margin:1rem 0 0;font-size:1rem;color:var(--muted)}
+.tribute .origin .wordmark{font-size:.95rem;letter-spacing:.24em;color:var(--maroon);margin:0 .2em}
+.tribute .origin em{font-family:"Bodoni Moda",Georgia,serif;font-size:1.15rem;color:var(--ink)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tribute .origin .wordmark{color:var(--rose)}}
+@media (max-width:600px){.tribute .origin{font-size:.85rem}.tribute .origin .wordmark{font-size:.82rem}.tribute .origin em{font-size:1rem}}
 /* founder card */
 .founder{margin-top:2.75rem;display:flex;gap:1.25rem;align-items:center;padding:1.25rem;background:var(--surface);border:1px solid var(--line);max-width:440px}
 .founder .portrait{width:84px;height:84px;flex:none;border-radius:4px;background:var(--maroon);color:var(--cream);display:grid;place-items:center;position:relative;overflow:hidden;font-family:"Bodoni Moda",Georgia,serif;font-size:1.45rem;letter-spacing:.06em}
@@ -544,10 +549,11 @@ footer .bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1re
         </div>
         <p class="kicker">In loving memory</p>
         <h2 class="serif" id="tributeTitle">Late Baleswari Devi</h2>
+        <p class="origin">The name <span class="wordmark">BALESHA</span> comes from <em>Baleswari</em></p>
         <div class="ornament" aria-hidden="true"><span></span></div>
         <blockquote>"She taught me that true elegance lives in the little things: a gift chosen with love, a kind word, a bag packed with care. Every Balesha piece carries a little of her grace."</blockquote>
         <p class="by">Sourav Suman, Founder</p>
-        <p class="second">Balesha began as a tribute to my grandmother, whose warmth and quiet style shaped everything I believe beauty should be. Like a diya that keeps glowing, her memory lights the way for every bag we make.</p>
+        <p class="second">Balesha began as a tribute to my grandmother, Late Baleswari Devi. Even our name comes from hers: BALESHA is drawn from Baleswari, so she is part of every bag we make. Her warmth and quiet style shaped everything I believe beauty should be, and like a diya that keeps glowing, her memory lights the way.</p>
       </div>
     </div>
   </section>
