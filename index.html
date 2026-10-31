@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-772J2MPYJF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-772J2MPYJF');
+</script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Balesha | Handbags, Potlis &amp; Mirror-Work Bags for Women in India</title>
@@ -1014,6 +1023,18 @@ async function loadPhotos(){
 renderTabs();renderGrid();
 loadPhotos();
 startCampaign();
+
+// ---- analytics: which buttons people tap ----
+document.addEventListener("click",e=>{
+  const a=e.target.closest("a"); if(!a||typeof gtag!=="function")return;
+  const href=a.href||"";
+  const card=a.closest(".card"), feat=a.closest(".featured");
+  const item=card?card.querySelector("h3")?.textContent.trim():feat?document.getElementById("featTitle")?.textContent.trim():"";
+  const where=card?"product card":feat?"featured":a.closest("header")?"header":a.closest("footer")?"footer":a.closest(".fab")?"floating button":a.closest(".founder")?"founder card":a.closest("#contact")?"contact":"page";
+  if(href.includes("wa.me")) gtag("event", item?"whatsapp_order_click":"whatsapp_click", {item_name:item||"(general)", button_location:where});
+  else if(href.includes("instagram.com")) gtag("event","instagram_click",{profile:href.split("/").filter(Boolean).pop(), button_location:where});
+  else if(href.startsWith("tel:")) gtag("event","phone_click",{button_location:where});
+});
 </script>
 </body>
 </html>
