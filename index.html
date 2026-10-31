@@ -479,16 +479,16 @@ footer .bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1re
     <div class="wrap">
       <div class="feat-art" id="featArt"></div>
       <div class="feat-copy">
-        <p class="kicker">Our favourite</p>
-        <h2 class="serif" id="featTitle">Gulabi mini satchel</h2>
-        <p class="desc">A soft blush satchel with gold hardware and a structured shape, carried by its top handle for the day or on the detachable strap when your hands are full.</p>
+        <p class="kicker">Coming soon</p>
+        <h2 class="serif" id="featTitle">The Balesha Monogram Tote</h2>
+        <p class="desc">Our first signature bag. A structured everyday tote woven with Balesha's own BB monogram, finished with a gold BALESHA plate and rich chocolate leather-look handles, big enough for work, a laptop and everything in between.</p>
         <dl class="spec">
-          <dt>Material</dt><dd>Textured faux leather with gold hardware</dd>
-          <dt>Carry</dt><dd>By hand, or on the detachable shoulder strap</dd>
-          <dt>Colour</dt><dd><div class="swatches"><span style="background:#E3B8AE" title="Blush pink"></span></div></dd>
+          <dt>Pattern</dt><dd>Balesha BB monogram, designed in-house</dd>
+          <dt>Details</dt><dd>Gold BALESHA plate, structured shape, shoulder handles</dd>
+          <dt>Colour</dt><dd><div class="swatches"><span style="background:#4A2E24" title="Chocolate"></span></div></dd>
         </dl>
-        <p class="feat-price">₹2,199<s>₹2,799</s></p>
-        <a class="btn btn-solid js-feat-order" href="#" target="_blank" rel="noopener">Order on WhatsApp</a>
+        <p class="feat-price" style="font-size:1.1rem;font-style:italic">Launching soon. Image is a design preview.</p>
+        <a class="btn btn-solid js-feat-order" href="#" target="_blank" rel="noopener">Notify me on WhatsApp</a>
       </div>
     </div>
   </section>
@@ -862,8 +862,8 @@ document.getElementById("yr").textContent=new Date().getFullYear();
 document.getElementById("heroBag").insertAdjacentHTML("afterbegin",bagSVG("handbag","#7A1F33"));
 
 const featured=PRODUCTS.find(p=>p.id==="gulabi-satchel")||PRODUCTS[0];
-document.getElementById("featArt").innerHTML=bagSVG(featured.shape,featured.slides[0].color);
-document.querySelector(".js-feat-order").href=orderLink(featured);
+document.getElementById("featArt").innerHTML=`<img src="images/coming-soon-monogram-tote.jpg" alt="The Balesha Monogram Tote, design preview" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:inherit">`;document.getElementById("featArt").style.overflow="hidden";
+document.querySelector(".js-feat-order").href=waLink("Hi Balesha! Please let me know when The Balesha Monogram Tote launches.");
 
 // instagram tiles
 const igPicks=PRODUCTS.slice(0,4).map(p=>[p.shape,p.slides[0].color]);
@@ -1008,8 +1008,6 @@ async function loadPhotos(){
   for(let i=2;i<=8;i++){const hit=await findOne(`hero-${i}`);if(!hit)break;heroes.push(hit);}
   if(!heroes.length&&PRODUCTS[0].slides[0].img)heroes.push(PRODUCTS[0].slides[0].img);
   if(heroes.length)startHeroSlides(heroes);
-  const feat=await findOne("featured")||featured.slides[0].img;
-  if(feat){const el=document.getElementById("featArt");el.style.overflow="hidden";el.innerHTML=photoTag(feat,featured.name);}
   const tiles=[...document.querySelectorAll("#instaGrid a")];
   for(let i=0;i<tiles.length;i++){const hit=await findOne(`insta-${i+1}`)||PRODUCTS[i]?.slides[0].img;if(hit)tiles[i].innerHTML=photoTag(hit,"Balesha on Instagram");}
 }
