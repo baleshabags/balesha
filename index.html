@@ -309,6 +309,7 @@ footer .bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1re
 .fab svg{width:26px;height:26px}
 
 
+.dots{flex-wrap:wrap;row-gap:8px;min-width:0}
 /* ---------- compact phone layout ---------- */
 @media (max-width:600px){
   body{font-size:.95rem;line-height:1.55}
@@ -366,6 +367,8 @@ footer .bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1re
   .price s{font-size:.75rem}
   .card .text-link{font-size:.78rem;letter-spacing:.03em}
   .arrow{width:30px;height:30px}
+  .dot{width:9px}
+  .dot[aria-current="true"]{width:18px}
 
   .craft blockquote{font-size:1.4rem}
   .craft .intro{font-size:.9rem;margin-bottom:1.5rem}
@@ -653,7 +656,7 @@ const CONTACT = {
                    images/insta-1.jpg ... images/insta-4.jpg (Instagram tiles).
    .jpg, .jpeg, .png and .webp all work. A product with no photos keeps its drawing.
    To add a new product, copy one block in PRODUCTS and give it a new id. */
-const PHOTOS = { folder:"images/", maxPerProduct:8, types:["jpg","jpeg","png","webp"] };
+const PHOTOS = { folder:"images/", maxPerProduct:12, types:["jpg","jpeg","png","webp"] };
 
 /* PRODUCTS
    Each slide can be either { color:"#hex", name:"Colour" } (drawn illustration)
@@ -668,6 +671,9 @@ const PRODUCTS = [
   { id:"gulabi-satchel", name:"Gulabi mini satchel", type:"Handbags", shape:"handbag", price:2199, mrp:2799,
     material:"Textured faux leather with top handle and detachable strap",
     slides:[{color:"#E3B8AE",name:"Blush pink"}]},
+  { id:"ring-handle-bag", name:"The Ring Handle Bag", type:"Handbags", shape:"handbag", price:599,
+    material:"Faux leather with metal ring handle, square clasp and detachable strap. Size 10 x 4 x 7 in",
+    slides:[{color:"#EFE6CF",name:"Cream"},{color:"#2A2A2A",name:"Black"},{color:"#D9A92E",name:"Mustard"},{color:"#D681A6",name:"Pink"},{color:"#7A4A33",name:"Brown"},{color:"#9AAA72",name:"Olive"},{color:"#A7A49C",name:"Grey"},{color:"#B892CC",name:"Lilac"},{color:"#B892CC",name:"Lilac, front angle"},{color:"#B892CC",name:"Lilac, side view"},{color:"#B892CC",name:"Inside"},{color:"#B892CC",name:"Back"}]},
   { id:"satchel", name:"The Satchel", type:"Handbags", shape:"handbag", price:2899,
     material:"Faux leather with gold push-lock, lotus charm and detachable strap",
     slides:[{color:"#E6DCCB",name:"Ivory"}]},
@@ -680,12 +686,18 @@ const PRODUCTS = [
   { id:"shoulder-bag", name:"The Shoulder Bag", type:"Shoulder bags", shape:"sling", price:1899,
     material:"Textured faux leather with gold-ring strap",
     slides:[{color:"#5E6B4E",name:"Olive"}]},
+  { id:"duo-baguette", name:"The Duo Baguette", type:"Shoulder bags", shape:"sling", price:599,
+    material:"Two-tone faux leather with zip closure and shoulder strap, in 8 colours",
+    slides:[{color:"#8A5A36",name:"Tan & mint"},{color:"#F2F2F0",name:"White & black"},{color:"#1E1E22",name:"Black & white"},{color:"#8E3A9E",name:"Purple & pink"},{color:"#B79388",name:"Dusty pink"},{color:"#9E9099",name:"Mauve"},{color:"#9CCFB8",name:"Mint & tan"},{color:"#E2C04E",name:"Yellow & brown"},{color:"#E2C04E",name:"Yellow, front"},{color:"#E2C04E",name:"Yellow, side"},{color:"#E2C04E",name:"Inside"},{color:"#E2C04E",name:"Yellow, angle"}]},
   { id:"moon-bag", name:"The Moon Bag", type:"Shoulder bags", shape:"sling", price:1999,
     material:"Mirror-work body with tassel charm and gold-ring strap",
     slides:[{color:"#C9A08A",name:"Blush"}]},
   { id:"boho-shoulder-bag", name:"The Boho Shoulder Bag", type:"Shoulder bags", shape:"sling", price:2199,
     material:"Mirror-work fabric with braided handle and shell tassels",
     slides:[{color:"#D9CBAE",name:"Natural"}]},
+  { id:"curve-shoulder-bag", name:"The Curve Shoulder Bag", type:"Shoulder bags", shape:"sling", price:599,
+    material:"Glossy faux leather in two-tone colours with contrast strap and zip closure",
+    slides:[{color:"#8A5A3C",name:"Tan & mint"},{color:"#F2F2F2",name:"White & black"},{color:"#1E1E2A",name:"Black & white"},{color:"#8A3FA0",name:"Purple & pink"},{color:"#B88C86",name:"Dusty rose"},{color:"#9C8C94",name:"Mauve"},{color:"#9BC9B4",name:"Mint & tan"},{color:"#E3C24A",name:"Yellow & brown"},{color:"#E3C24A",name:"Yellow, front"},{color:"#E3C24A",name:"Inside"},{color:"#E3C24A",name:"Yellow, angle"}]},
   { id:"mehendi-sling", name:"Mehendi sling", type:"Slings", shape:"sling", price:1599,
     material:"Faux leather flap with gold push-lock and adjustable strap",
     slides:[{color:"#6B7358",name:"Olive"}]},
